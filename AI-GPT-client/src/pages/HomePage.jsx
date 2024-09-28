@@ -81,7 +81,7 @@ const HomePage = () => {
     <section className='w-screen h-screen bg-black flex flex-col'>
       <Header home={true} />
       <div className='flex flex-col md:flex-row items-start pt-5 pl-8 flex-grow h-full w-full'>
-        <div className='h-full pb-5'>
+        <div className='h-[90svh] pb-5 absolute'>
           {isMenuOpen ? (
             <Sidebar
               email={email}
