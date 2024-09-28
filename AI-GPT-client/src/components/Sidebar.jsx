@@ -1,5 +1,7 @@
 import React from 'react'
 import closeButton from '../assets/close_button.png'
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 const Sidebar = ({closeMenu}) => {
     return (

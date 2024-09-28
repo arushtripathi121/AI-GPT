@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     image:{
         type: String,
     },
-})
+}, { timestamps: true })
 
 const UserModel = mongoose.model('social-login', userSchema);
 module.exports = UserModel;
