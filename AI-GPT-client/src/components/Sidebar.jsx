@@ -9,7 +9,7 @@ const Sidebar = ({ closeMenu, email, conversationId, startNewChat }) => {
 
     const fetchConversation = async (email) => {
         setIsLoading(true);
-        const response = await fetch('http://localhost:3000/api/v1/gpt/getConversationIds', {
+        const response = await fetch('https://ai-gpt-kohl.vercel.app/api/v1/gpt/getConversationIds', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ const Sidebar = ({ closeMenu, email, conversationId, startNewChat }) => {
 
     const deleteConversation = async (conversationId) => {
         setIsLoading(true);
-        const response = await fetch('http://localhost:3000/api/v1/gpt/deleteConversation', {
+        const response = await fetch('https://ai-gpt-kohl.vercel.app/api/v1/gpt/deleteConversation', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
