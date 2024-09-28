@@ -42,7 +42,7 @@ const SignInPage = () => {
         <main className="flex flex-col justify-center items-center min-h-screen bg-black text-white">
             <Header />
 
-            <section className="mt-10">
+            <section className="mt-10 w-full max-w-sm">
                 <div
                     onClick={googleLogin}
                     className="border border-gray-600 p-5 rounded-xl cursor-pointer hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-600 transition duration-300 ease-in-out"

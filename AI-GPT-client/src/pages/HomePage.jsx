@@ -68,6 +68,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchDataById(currentConversationId);
+    setIsMenuOpen(false);
   }, [currentConversationId]);
 
   useEffect(() => {
@@ -79,7 +80,7 @@ const HomePage = () => {
   return (
     <section className='w-screen h-screen bg-black flex flex-col'>
       <Header home={true} />
-      <div className='flex flex-row items-start pt-5 pl-8 flex-grow h-full w-full'>
+      <div className='flex flex-col md:flex-row items-start pt-5 pl-8 flex-grow h-full w-full'>
         <div className='h-full pb-5'>
           {isMenuOpen ? (
             <Sidebar
@@ -91,9 +92,13 @@ const HomePage = () => {
               conversationId={(e) => setCurrentConversationId(e)}
               closeMenu={handleMenuButton}
             />
-
           ) : (
-            <img src={menuButton} onClick={handleMenuButton} className='w-8 h-8 cursor-pointer' alt="Menu Button" />
+            <img
+              src={menuButton}
+              onClick={handleMenuButton}
+              className='w-8 h-8 cursor-pointer md:hidden'
+              alt="Menu Button"
+            />
           )}
         </div>
 
@@ -117,7 +122,6 @@ const HomePage = () => {
                           .replace(/\* (.*?)\n/g, '<li>$1</li>')
                           .replace(/\n/g, '<br />'),
                       }} />
-                      {LoadingNewResponse && <p className="text-yellow-400 italic">Loading new response...</p>}
                     </div>
                   ))
                 ) : (
@@ -126,6 +130,7 @@ const HomePage = () => {
                   </div>
                 )
               )}
+              {LoadingNewResponse && <p className="text-yellow-400 italic">Loading new response...</p>}
             </div>
           </div>
 
@@ -140,12 +145,15 @@ const HomePage = () => {
                 placeholder='Enter your prompt'
                 onChange={(e) => setPrompt(e.target.value)}
               />
-              <button onClick={handleAskButton} className='bg-white p-3 text-black font-medium text-xl px-10 rounded-r-lg'>Ask</button>
+              <button onClick={handleAskButton} className='bg-white p-3 text-black font-medium text-xl px-10 rounded-r-lg'>
+                Ask
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
+
   );
 };
 

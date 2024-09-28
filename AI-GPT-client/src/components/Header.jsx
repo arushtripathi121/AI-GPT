@@ -22,17 +22,16 @@ const Header = ({ home }) => {
     }, [])
 
     return (
-        <header className="bg-black text-white py-4 flex justify-between items-center px-10 pt-5">
-            <h1 className="text-4xl font-bold">AI GPT</h1>
+        <header className="bg-black text-white py-4 flex justify-between items-center px-5 md:px-10">
+            <h1 className="text-2xl md:text-4xl font-bold">AI GPT</h1>
             {home && (
                 <div className="relative">
                     <img
                         src={userInfo?.image}
                         alt="User"
-                        className="w-10 h-10 rounded-full cursor-pointer"
+                        className="w-8 h-8 md:w-10 md:h-10 rounded-full cursor-pointer"
                         onClick={handleImageClick}
                     />
-
                     {isMenuOpen && (
                         <div className="absolute right-0 mt-2 w-64 bg-gray-800 text-white shadow-lg rounded-md">
                             <div className="px-4 py-2">

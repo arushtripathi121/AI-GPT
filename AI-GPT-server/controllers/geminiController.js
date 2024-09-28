@@ -2,7 +2,6 @@ const { getResponse } = require("../helper/geminiApi");
 const Chat = require("../models/chatModel");
 const Conversation = require("../models/conversationModel");
 const UserModel = require("../models/userModel");
-
 exports.response = async (req, res) => {
     try {
         const { prompt, conversationId, email } = req.body;
@@ -119,6 +118,37 @@ exports.getAllChatsByConversationId = async (req, res) => {
         });
     } catch (e) {
         console.error(e);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+};
+
+
+exports.deleteConversation = async (req, res) => {
+    try {
+        const { conversationId } = req.body;
+
+        const conversation = await Conversation.findOne({ _id: conversationId });
+
+        if (!conversation) {
+            return res.status(404).json({
+                success: false,
+                message: 'No conversation found'
+            });
+        }
+
+        await Chat.deleteMany({ _id: { $in: conversation.chats } });
+
+        await Conversation.deleteOne({ _id: conversationId });
+
+        return res.status(200).json({
+            success: true,
+            message: 'Conversation deleted successfully'
+        });
+    } catch (error) {
+        console.error(error);
         return res.status(500).json({
             success: false,
             message: 'Internal server error'
