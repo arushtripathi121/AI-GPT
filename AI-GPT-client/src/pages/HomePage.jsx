@@ -23,7 +23,7 @@ const HomePage = () => {
     if (id) {
       setIsLoading(true);
       try {
-        const response = await fetch('http://localhost:3000/api/v1/gpt/getChats', {
+        const response = await fetch('https://ai-gpt-kohl.vercel.app/api/v1/gpt/getChats', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ conversationId: id }),
@@ -44,7 +44,7 @@ const HomePage = () => {
     const body = JSON.stringify({ prompt, email, conversationId: currentConversationId || undefined });
 
     try {
-      const response = await fetch('http://localhost:3000/api/v1/gpt/prompt', {
+      const response = await fetch('https://ai-gpt-kohl.vercel.app/api/v1/gpt/prompt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body,
