@@ -96,7 +96,6 @@ const Sidebar = ({ closeMenu, email, conversationId, startNewChat }) => {
                 </div>
             )}
         </div>
-
     )
 }
 

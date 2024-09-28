@@ -31,4 +31,16 @@
     scrollbar-width: thin;
     scrollbar-color: white black;
   }
+
+  @media (max-width: 768px) {
+    .md\:flex-row {
+      flex-direction: column;
+    }
+    .md\:w-64 {
+      width: 100%;
+    }
+    .md\:ml-64 {
+      margin-left: 0;
+    }
+  }
   

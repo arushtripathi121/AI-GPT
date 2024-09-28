@@ -96,7 +96,7 @@ const HomePage = () => {
             <img
               src={menuButton}
               onClick={handleMenuButton}
-              className='w-8 h-8 cursor-pointer md:hidden'
+              className='w-8 h-8 cursor-pointer'
               alt="Menu Button"
             />
           )}
@@ -153,7 +153,6 @@ const HomePage = () => {
         </div>
       </div>
     </section>
-
   );
 };
 
