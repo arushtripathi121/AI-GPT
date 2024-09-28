@@ -8,8 +8,6 @@ const PORT = process.env.PORT;
 
 connectToDb();
 
-app.use(express.json());
-
 const corsOptions = {
     origin: process.env.FRONTEND_URL,
     methods: 'GET,POST,PUT,DELETE',
@@ -18,7 +16,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use('/', (req, res) => {
+app.use(express.json());
+
+app.get('/', (req, res) => {
     res.send("The server is working fine");
 });
 
