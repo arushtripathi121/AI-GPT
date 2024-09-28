@@ -8,5 +8,8 @@ router.post('/prompt', response);
 router.post('/getConversationIds', getAllConverssationIds);
 router.post('/getChats', getAllChatsByConversationId)
 router.post('/deleteConversation', deleteConversation)
+router.get('/test', (req, res) => {
+    res.send('The server is workng fine')
+})
 
 module.exports = router;
