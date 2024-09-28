@@ -18,11 +18,11 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.send("The server is working fine");
 });
 
-app.use('/api/v1/gpt/', router);
+app.use("/api/v1/gpt/", router);
 
 app.listen(PORT, () => {
     console.log(`The app is running on localhost:${PORT}`);
