@@ -18,6 +18,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use('/', (req, res) => {
+    res.send("The server is working fine");
+});
+
 app.use('/api/v1/gpt', router);
 
 app.listen(PORT, () => {
