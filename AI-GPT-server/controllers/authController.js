@@ -1,4 +1,4 @@
-const { oauth2Client } = require("../Config/googleConfig");
+const { oauth2Client } = require("../config/googleConfig");
 const UserModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
