@@ -32,4 +32,7 @@
     |-- router
         |-- Router.jsx
 |-- tailwind.config.js
+|-- Vireon-client
+    |-- .gitattributes
+    |-- .gitignore
 |-- vite.config.js
