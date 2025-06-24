@@ -1,0 +1,23 @@
+|-- .env
+|-- .gitignore
+|-- .vercel
+    |-- project.json
+    |-- README.txt
+|-- config
+    |-- database.js
+    |-- googleConfig.js
+|-- controllers
+    |-- authController.js
+    |-- geminiController.js
+|-- helper
+    |-- geminiApi.js
+|-- models
+    |-- chatModel.js
+    |-- conversationModel.js
+    |-- userModel.js
+|-- package-lock.json
+|-- package.json
+|-- router
+    |-- router.js
+|-- server.js
+|-- vercel.json
