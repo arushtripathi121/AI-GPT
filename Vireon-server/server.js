@@ -23,7 +23,7 @@ const corsOptions = {
 
 console.log(`CORS origin allowed: ${corsOptions.origin}`);
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.options("*", cors(corsOptions)); // For preflight requests
 app.use(express.json());
 
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/api/v1/gpt", router);
+app.use("/", router);
 
 // Start server
 app.listen(PORT, () => {

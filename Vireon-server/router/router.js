@@ -26,7 +26,7 @@ router.post('/conversation/delete', deleteConversation);
 
 // Test route
 router.get('/test', (req, res) => {
-    res.send('The server is workng fine');
+    res.send('The server is workng');
 });
 
 module.exports = router;
