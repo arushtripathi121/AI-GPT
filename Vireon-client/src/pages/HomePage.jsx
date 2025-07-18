@@ -152,6 +152,8 @@ const HomePage = () => {
         body: JSON.stringify({ prompt, email, conversationId: currentSessionId }),
       });
       const { data } = await res.json();
+      console.log(data);
+
       setSessionData(data);
       const latest = data.chats[data.chats.length - 1];
       setLastTypedChatId(latest._id);
@@ -235,13 +237,17 @@ const HomePage = () => {
   return (
     <section className="flex flex-col w-screen h-screen bg-white text-gray-900">
       <Header home setCurrentSessionId={setCurrentSessionId} startNewChat={startNewChat} />
+
       <div className="flex flex-grow overflow-hidden">
         <div className="flex flex-col flex-grow overflow-hidden">
-          <div ref={chatContainerRef} className="flex flex-col flex-grow px-6 py-4 space-y-6 overflow-y-auto">
+          <div
+            ref={chatContainerRef}
+            className="flex flex-col flex-grow px-4 sm:px-6 py-3 sm:py-4 space-y-6 overflow-y-auto"
+          >
             {isLoading ? (
               <div className="text-center text-gray-500 mt-10">
-                <div className="w-8 h-8 mx-auto border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-2">Loading session…</p>
+                <div className="w-8 h-8 mx-auto border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+                <p className="mt-2 text-sm sm:text-base">Loading session…</p>
               </div>
             ) : sessionData?.chats?.length ? (
               sessionData.chats.map((chat, idx) => {
@@ -249,23 +255,27 @@ const HomePage = () => {
                 const responseSegments = isLast ? typedSegments : splitResponse(chat.response || '');
 
                 return (
-                  <div key={chat._id || idx} className="py-4 border-b space-y-2">
-                    <div className="flex justify-between items-center">
+                  <div key={chat._id || idx} className="py-3 border-b space-y-2">
+                    <div className="flex justify-between items-center flex-wrap gap-2">
                       <p className="font-semibold text-indigo-600">You:</p>
                       <span className="text-sm text-gray-500">{moment(chat.date).format('lll')}</span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <p className="italic">{chat.prompt}</p>
+                    <div className="flex justify-between items-start sm:items-center flex-wrap gap-2">
+                      <p className="italic break-words flex-1">{chat.prompt}</p>
                       <CopyFull text={chat.prompt} />
                     </div>
                     <p className="font-semibold text-indigo-600">Bot:</p>
                     <div className="relative">
                       {responseSegments.map((seg, i) =>
-                        seg.type === 'code' ? <CodeBlock key={i} code={seg.content} /> : <TextBlock key={i} text={seg.content} />
+                        seg.type === 'code' ? (
+                          <CodeBlock key={i} code={seg.content} />
+                        ) : (
+                          <TextBlock key={i} text={seg.content} />
+                        )
                       )}
                       {isLast && !isTypingDone && (
                         <div className="mt-2 text-sm text-gray-500 flex items-center gap-2">
-                          <span className="w-3 h-3 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></span>
+                          <span className="w-3 h-3 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
                           Thinking...
                         </div>
                       )}
@@ -274,27 +284,28 @@ const HomePage = () => {
                 );
               })
             ) : (
-              <p className="text-center text-gray-400 mt-10">Start a new chat!</p>
+              <p className="text-center text-gray-400 mt-10 text-sm sm:text-base">Start a new chat!</p>
             )}
           </div>
 
-          <div className="p-4 border-t">
-            <div className="flex items-center px-4 py-2 border rounded-lg shadow-md">
+          <div className="p-3 sm:p-4 border-t">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 px-3 sm:px-4 py-2 border rounded-lg shadow-md">
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Enter your prompt..."
-                className="flex-grow px-4 py-2 bg-white text-gray-800 outline-none"
+                className="flex-grow px-4 py-2 bg-white text-gray-800 outline-none rounded border"
                 disabled={loadingResponse}
               />
               <button
                 onClick={submitPrompt}
                 disabled={loadingResponse || !prompt.trim()}
-                className={`px-6 py-2 font-semibold text-white rounded ${loadingResponse ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'}`}
+                className={`w-full sm:w-auto px-6 py-2 font-semibold text-white rounded ${loadingResponse ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
+                  }`}
               >
                 {loadingResponse ? (
-                  <div className="flex items-center gap-2">
-                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     Thinking
                   </div>
                 ) : (

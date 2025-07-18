@@ -49,22 +49,24 @@ const Header = ({ home = false, email, startNewChat, sessions, setSessions, setC
             )}
 
             {/* Sidebar */}
-            <div className={`fixed top-0 left-0 h-full w-64 z-50 bg-white text-black shadow-lg transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <Sidebar
-                    email={userInfo?.email}
-                    userInfo={userInfo}
-                    isSidebarOpen={isMenuOpen}
-                    startNewChat={startNewChat}
-                    setCurrentSessionId={(id) => {
-                        setCurrentSessionId(id);
-                        setIsMenuOpen(false);
-                    }}
-                    closeMenu={() => setIsMenuOpen(false)}
-                    sessions={sessions}
-                    setSessions={setSessions}
-                    handleLogout={handleLogout}
-                />
-            </div>
+            {isMenuOpen && (
+                <div className="fixed top-0 left-0 h-full w-64 z-50 bg-white text-black shadow-lg transform transition-transform duration-300 translate-x-0">
+                    <Sidebar
+                        email={userInfo?.email}
+                        userInfo={userInfo}
+                        isSidebarOpen={isMenuOpen}
+                        startNewChat={startNewChat}
+                        setCurrentSessionId={(id) => {
+                            setCurrentSessionId(id);
+                            setIsMenuOpen(false);
+                        }}
+                        closeMenu={() => setIsMenuOpen(false)}
+                        sessions={sessions}
+                        setSessions={setSessions}
+                        handleLogout={handleLogout}
+                    />
+                </div>
+            )}
         </header>
     );
 };
